@@ -1,0 +1,478 @@
+---
+title: "Jade Carter HUDM 5026 Final Project"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+  pdf_document:
+    toc: true
+date: "2025-07-01"
+---
+
+# Introduction & Literature Review 
+Parkinson’s disease (PD) affects an estimated one million individuals (Kim et al., 2019). 
+PD is caused by the progressive loss of dopaminergic and cholinergic neurons in the substantia nigra of the basal nuclei, 
+causing symptoms such as bradykinesia (slowness of movement), freezing of gait (FoG), muscle stiffness and gait disturbances (de Melo et al.,2018;Gulcan et al.,2022). These symptoms can lead to increased fall risk, significantly impact daily activity performance, independence, and overall quality of life for people with Parkinson's disease (PwP) (Kwon et al., 2023; Gulcan et al., 2022).
+
+Bradykinesia is a common symptom of PD. Specifically, reduced arm swing, gait speed, and turn duration are common indicators of increased fall risk (B H Wood et al., 2002; Kyrdalen et al., 20219; Manicini et al., 2018). Individuals utilize arm swing to maintain stability, reduce energy cost and initiate lower limb movement during gait (Meyns et al., 2013). Wood et al.(2002) conducted a study with 109 PwP as either faller (69 reported at least one fall during the one year follow up period) or non faller (40). Baseline assessments took place over a six month period in which individuals physical and mental functioning were assessed. Additionally, gait and balance functionality was assessed by a physiotherapist through sit to stand tasks and walking over 10 meters. Results showed a significant association between loss of arm swing and falling (67.3% of fallers and 33.3% of non fallers  p = 0.003). The researchers concluded that loss of arm swing was an independent predictor of fall risk. Navarro-Lopez et al. (2022) conducted a systematic literature and meta-analysis of four studies that compared arm swing velocity of PwP and control participants while walking. Results showed that PwP had 0.31 m/s slower arm swing compared to control participants.
+
+Gait speed is a common measure of mobility in clinical settings as is considered a "vital" sign of functional mobility and health as it can indicate less dynamic stability (Mehmet et al., 2020). Gait speed is a product of steps per minute (cadence), and stride length. A review by (Creaby & Cole, 2018) found lower cadence and shorter strides increases fall risk in PwP. Hyrdalen et al. (2019) conduced a study with 108 older adults. All participants walked over a distance of 4 meters at their preferred gait speed. The cutoff gait speed was 1.0 m/s. The mean gait speed was 1.00 ± 0.26 m/s and 48 (44.4%) of the individuals were below 1.0 m/s, which indicated increased fall risk. 
+
+Unlike straight-ahead walking, turning during gait requires an individual to adjust their locomotor system to maintain stability and turn safely. Turning becomes more challenging with age and older adults typically exhibit slower turn duration and greater step width as a precaution strategy (Mancini et al., 2018) 
+
+In the study by Mancini et al. (2018), 35 older adults were grouped based on their number of falls in the past 12 months. Nonfallers (NF, N = 16) had no falls, single fallers (SF, N = 12) had one fall, and recurrent fallers (RF, N = 7) had more than one fall in the past 12 months. Each participant wore wearable sensors to monitor their movement over seven days. Results showed that the RF group had significantly longer mean turn duration (SF = 3.3, p = .05; RF compared with NF p= 0.01) and significantly larger number of steps per turn compared to SF and NF (SF = 5.2, p = 0.01; RF compared with NF p =.004; RF compared with SF p = .01).  
+
+Similar to Mancini et al. (2018), researchers in recent years have used synchronized, wearable inertial sensors such as Ambulatory Parkinson's Disease Monitoring (APDM) Opal sensors as a way to quantify gait and balance characteristics during clinical tasks. 
+
+
+The purpose of this project is to characterize PwP and control participants from this study as high fall risk or low fall risk based on the variables mentioned above during the Instrumented Stand and Walk (ISAW) test.
+
+
+The research questions are as follows:
+
+1. Is there a significant difference in the proportion of people with Parkinson's disease classified as increased fall risk compared to control participants? 
+
+2. Are there significant differences in arm swing velocity, turn duration, and gait speed in people with PD compared to control participants? 
+
+# Methods and Sample
+13 PwP and 12 older adults (controls) participated in this study. No participants had other orthopedic surgery, and were able to walk independently. The Hoehn and Yahr (H&Y) scale is used to describe the progression of PD and functional disability. Stage I indicates PwP have unilateral involvement only, usually with minimal or no functional impairment. In Stage V, PwP have confinement to bed or wheelchair unless aided. All PwP in this study were within H&Y I-III. 
+
+For this study,all participants were fitted with six APDM Opal sensors (Portland,OR) worn on both wrists, feet, lumbar, and sternum.  The data from the sensors was recorded and synchronized at 128 Hz and stored in the Opal's memory system. Each participant completed the Instrumented Stand and Walk (ISAW) test which is a test through the APDM Mobility Lab software platform. For this test, participants stand still for 30 seconds with hands on their hips and eyes open, then they walk at a comfortable pace over 7 meters, turn 180 degrees, walk back, and stand still at the starting position. This test was repeated on average 3±1 depending on technical issues faced during data collection. 
+
+The data from the sensors was streamed wirelessly to a computer. After each test, APDM Mobility Lab automatically calculates outcome measures.The data for each participant was downloaded as a CSV for analysis. 
+
+First, for the cleaning process the numeric variables of interest were renamed and assigned to a new variable. There was no missing data in the outcome variables.Since the original CSV had arm swing and gait speed for the left and right sides of the body separately, the average was taken for each of these variables to get a single value for arm swing velocity and gait speed,respectfully. A new column "group" was created to indicate TMOA as control and TMPD as PD. This grouping was used throughout the rest of the analysis. The dataframe was organized by group and in numerical order.
+
+For the categorical variables the cleaning process was as follows. Only TMOA and TMPD participants were extracted from the dataset. TMOA10, and TMOA12 were excluded because they did not have numeric data. Additionally TMOA7female was removed because it was a duplicate of TMOA7. A new column "group" was created to indicate TMOA as control and TMPD as PD which was used throughout the rest of the analysis. The dataframe was organized by group and in numerical order.
+
+The first graphical technique was a boxplot. The lines that extend out from the box (whiskers) indicate the minimum and maximum values. The middle line inside the box is the middle point of the data (median) also known as the second quartile (Q2). The first quartile (Q1) is the median of the bottom half of the data. The third quartile (Q3) is the median of the upper half of the data. The box represents the middle 50% of the data i.e. Q3-Q1 (interquartile range). Outliers are potted with a circle. A median that is closer to the bottom or top of the plot indicated more skewed data. An X was added to indicate the position of the mean. 
+
+
+The second graphical technique was a barplot. A barplot displays the frequency of categories with adjacent bars. The height of the bar represents the value for each category. In this project, the barplot was used to indicate the number of participants in each group (control or PD) as either low or high fall risk.
+
+Below is a table of descriptive statistics. Numeric variables are presented as mean ± SD and categorical variables are presented as frequencies and percentages.
+ 
+```{r echo=FALSE, message = FALSE}
+### hide r code and packages
+
+
+setwd(dir = "/Users/jade/Desktop/TC/Spring 25/HUDM 5026/Homework")
+library(tidyverse)
+library(dplyr)
+library(mice)
+library(knitr)
+
+library(stringr)
+data <- read.csv(file = "SAW_NEW.csv")
+
+## Renaming columns of interest and assign it to data2
+
+data2 <- data %>%
+  rename( 
+    ID = `Subject.Public.ID`,
+    Gait_speed_r = `Gait...Lower.Limb...Gait.Speed.R..m.s...mean.`,
+    Gait_speed_l = `Gait...Lower.Limb...Gait.Speed.L..m.s...mean.`,
+    Arm_vel_r = `Gait...Upper.Limb...Arm.Swing.Velocity.R..degrees.s...mean.`,
+    Arm_vel_l = `Gait...Upper.Limb...Arm.Swing.Velocity.L..degrees.s...mean.`,
+    Turn_dur = `Turns...Duration..s...mean.`
+  ) %>%
+  group_by(ID) %>% 
+  # average gait speed between left and right leg
+  # avg arm swing velocity for left and right arms for each participant
+  # across their trials
+  summarise(
+    Gait_speed_avg = mean(rowMeans(across(c(Gait_speed_l, Gait_speed_r)))),
+    Arm_vel_avg = mean(rowMeans(across(c(Arm_vel_l, Arm_vel_r)))),
+    Turn_dur_avg = mean(Turn_dur)
+  ) %>%
+  
+  #create new column for the groups: Control or PD. If the string is "TMOA"the 
+  #group is control. if not, PD. Order each group by subject number
+  
+  mutate(
+    Group = ifelse(substr(ID, 1, 4) == "TMOA", "control", "PD"),
+    ID_num = as.numeric(str_extract(ID, "\\d+"))
+  ) %>%
+  arrange(Group, ID_num) %>%  
+  # select columns of interest 
+  select(ID, Group, Gait_speed_avg, Arm_vel_avg, Turn_dur_avg)
+
+
+
+######DESCRIPTIVES######
+
+#### NUMERIC VARIABLES
+num <- data2 
+
+numeric_vars <- sapply(num, is.numeric) # make sure each column is numeric
+# this now becomes a logical vector
+numeric_vars[c("Group", "ID")] <- FALSE # exclude these columns
+vars <- names(num)[numeric_vars] # the names in the vector are taken from the original 
+#dataframe data2 
+
+
+# create a function where you input a variable and it will calculate the mean and sd
+# with 2 sig digits after decimal point
+
+summary_fn <- function(x) {  
+  sprintf("%.2f (%.2f)", mean(x), sd(x))
+}
+
+# make a summary table for the numeric descriptive by group and overall
+# give any variable name  in num, the v doesnt matter just palceholdrer 
+
+summ_table <- sapply(vars, function(v) {  
+  c(
+    Overall     = summary_fn(num[[v]]),
+    Control     = summary_fn(num[num$Group == "control",] [[v]]),
+    PD = summary_fn(num[num$Group == "PD",] [[v]])
+  )
+})
+
+#change the column names. 
+
+colnames(summ_table) <- 
+c("Gait Speed, m/s", 
+  " Arm Swing Velocity, \u00B0/s", 
+  " Turn Duration, s")
+
+
+# Transpose and format
+summ_table <- t(summ_table)
+colnames(summ_table) <- c("Overall", "Control", "PD")
+
+
+#####categorical########
+
+cat_data<- read.csv(file = "Descriptives.csv")
+
+######## Cleaning categorical######
+
+# filter to only have participants with TMOA or TMPD 
+# Remove the TMOA7female because it is extra,TMOA10 and and TMOA12 dont have numeric data
+
+cat_data<-cat_data %>% 
+  filter(str_detect(record_id, "TMOA|TMPD") & !(record_id %in% c("TMOA7female","TMOA10", "TMOA12"))
+         )%>% 
+  mutate( 
+    Group =ifelse(substr(record_id,1,4) == "TMOA","control", "PD"),
+    ID_num = as.numeric(str_extract(record_id, "\\d+")) # extract one or more digits
+   ) %>%
+    arrange(Group, ID_num)
+
+### count the number of participants/group
+
+n_overall <- nrow(num) # total number of rows 
+n_PD <- sum(num$Group == "PD")
+n_control <- sum(num$Group == "control")
+
+
+
+# Add categorical gender to base R approach
+# Create a function to produce counts and percents  
+count_percent <- function(x) {
+  counts <- table(x)
+  percents <- prop.table(counts) * 100
+  out <- sprintf("%d (%.1f%%)", counts, percents) 
+  names(out) <- names(counts)
+  return(out)
+}
+
+
+# Overall gender
+overall_gender <- count_percent(cat_data$gender)
+
+#Overall RACE
+overall_race <- count_percent(cat_data$race)
+
+# By group GENDER
+gender_control <- count_percent(cat_data$gender[cat_data$Group == "control"])
+gender_pd <- count_percent(cat_data$gender[cat_data$Group == "PD"])
+
+# BY group RACE
+race_control <- count_percent(cat_data$race[cat_data$Group == "control"])
+race_pd <- count_percent(cat_data$race[cat_data$Group == "PD"])
+
+# Combine and align output GENDER
+gender_levels <- union(names(overall_gender), union(names(gender_control), names(gender_pd)))
+
+#make gender table
+
+gender_table <- sapply(gender_levels, function(level) {
+  c(
+    Overall     = overall_gender[level],
+    Control     = gender_control[level],
+    PD = gender_pd[level]
+  )
+})
+# Combine and align output RACE
+race_levels <- union(names(overall_race), union(names(race_control), names(race_pd)))
+
+## for each level in race, run this function
+
+race_table <- sapply(race_levels, function(level) { 
+  c(
+    Overall     = overall_race[level], # count of each level in overall data 
+    Control     = race_control[level],
+    PD          = race_pd[level]
+  )
+})
+
+###Age for each group###
+cat_data$age <- as.numeric(cat_data$age)
+vars <- "age"
+
+summary_fn_age <- function(z) {  
+  sprintf("%.2f (%.2f)", mean(z), sd(z))
+}
+
+# make a summary table for the age by group and overall
+# give any variable name  in cat_data, the z doesnt matter just palceholdrer 
+
+age_table <- sapply(vars, function(z) {  
+  c(
+    Overall     = summary_fn_age(cat_data[[z]]),
+    Control     = summary_fn_age(cat_data[cat_data$Group == "control",] [[z]]),
+    PD = summary_fn_age(cat_data[cat_data$Group == "PD",] [[z]])
+  )
+})
+#age_table
+#change the column names. 
+
+colnames(age_table) <- 
+c("**Age**")
+
+
+# Transpose and format
+age_table <- t(age_table)
+
+colnames(age_table) <- c("Overall", "Control", "PD")
+#age_table
+## turn NA into 0
+race_table[is.na(race_table)] <- "0"
+
+
+# Transpose 
+gender_table <- t(gender_table)
+
+## Change row names for Gender table 
+
+rownames(gender_table) <- c(" 
+                            Female", 
+                            "Male")
+
+# Transpose  RACE
+race_table <- t(race_table)
+colnames(race_table) <- c("
+                          Overall", "Control", "PD")
+
+
+## Change row names for Race table 
+
+rownames(race_table) <- c(
+                         "Asian",
+                          " Black or African American", 
+                          " White", 
+                          " More Than One Race", 
+                          " Unknown/Not Reported")
+
+# Combine, gender, race, and numeric table
+full_table <- rbind(age_table,race_table,gender_table,summ_table)
+
+# add the number of participants within each group
+
+colnames(full_table) <- c(
+  paste0("Overall (n = ", n_overall,")"), 
+  paste0("Control (n = ", n_control,")"),
+  paste0("PD (n = ", n_PD,")")
+  )
+
+#formatting the final table for RMarkdown. Group_rows is for indenting .
+# Made sure everything was center aligned. ** makes stuff bold 
+library(kableExtra)
+kable(
+  full_table, 
+  caption = "**Table 1**\n
+  *Demographics and Outcome Variables*", 
+  align = "c" 
+   ) %>%
+  kable_classic()%>%
+  footnote(general = "PD = Parkinson's disease. All PD participants were bewteen Hoehn and Yahr stage I-III out of V with higher stage indicating increased disease serverity") %>%
+  group_rows("Race", 2,6) %>% 
+  group_rows("Gender",7,8) %>%
+  group_rows("Outcome Variables",9,11) 
+  
+```
+# Findings 
+Since there was a small sample size (N=25), a two sided t-test was used and it was assumed that variances are not equal.
+
+
+```{r,fig.show="hold", fig.width=10,fig.height=5, echo=FALSE, message=FALSE}
+#change the width and height of the figures and dont show warning messages and 
+#just show the output
+
+library(ggsignif) # calculates significant differences between group
+
+
+## Box Plot for Gait speed with significance levels using t test adding an X at the mean ##
+
+gait_plot <- ggplot(data2, aes(x = Group, y = Gait_speed_avg)) +
+  geom_boxplot() +   
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    shape = 4, size =4, color = "blue"
+  ) +
+  
+  geom_signif(
+    comparisons = list(c("control", "PD")), 
+    test = "t.test",
+    test.args = list(var.equal = FALSE),
+    map_signif_level=TRUE) +
+  labs(
+       x ="Group",
+       y= "Gait Speed (m/s)",
+       title = "Mean Gait Speed")
+
+
+
+## Box plot for arm swing velocity with significance levels  adding an X at the mean##
+
+arm_plot<- ggplot(data2, aes(x = Group, y = Arm_vel_avg)) +
+  geom_boxplot() + 
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    shape = 4, size =4, color = "blue"
+    )+
+  geom_signif(
+    comparisons = list(c("control", "PD")), 
+    test = "t.test",
+    test.args = list(var.equal = FALSE),
+    map_signif_level=TRUE) +
+  labs(
+       x ="Group",
+       y= "Arm Swing Velocity  (\u00B0/s)",
+       title = "Mean Arm Swing Velocity") 
+
+## Box plot for turn duration with significance levels  adding an X at the mean##
+
+turn_plot<- ggplot(data2, aes(x = Group, y = Turn_dur_avg)) +
+  geom_boxplot() + 
+   stat_summary(
+     fun = mean,
+    geom = "point",
+    shape = 4, size =4, color = "blue"
+    )+
+  geom_signif(
+    comparisons = list(c("control", "PD")), 
+    test = "t.test",
+    test.args = list(var.equal = FALSE),
+    map_signif_level=TRUE) +
+  labs(
+       x ="Group",
+       y= "Turn Duration (m/s)",
+       title = "Mean Turn Duration") 
+
+#this mades subplots basically so they are side by side 
+library(gridExtra)
+grid.arrange(gait_plot,arm_plot,turn_plot,ncol=3) 
+
+## Get the p vaLue for gait speed ##
+
+ttest_gait<-t.test(
+       x = data2$Gait_speed_avg[data2$Group == "control"],
+       y = data2$Gait_speed_avg[data2$Group == "PD"], 
+       alternative = "two.sided", 
+       var.equal = FALSE)
+
+#ttest_gait$p.value
+
+## Get the p vaLue for arm swing velocity ##
+ttest_arm_swing<-t.test(
+       x = data2$Arm_vel_avg[data2$Group == "control"],
+       y = data2$Arm_vel_avg[data2$Group == "PD"], 
+       alternative = "two.sided", 
+       var.equal = FALSE)
+
+#ttest_arm_swing$p.value
+
+## Get the p value for turn duration  ##
+ttest_turn_dur<-t.test(
+       x = data2$Turn_dur_avg[data2$Group == "control"],
+       y = data2$Turn_dur_avg[data2$Group == "PD"], 
+       alternative = "two.sided", 
+       var.equal = FALSE)
+
+#ttest_turn_dur$p.value
+
+```
+**Figure 1** displays boxplots for each outcome variable across control and PD participants. A blue X indicates the mean for each variable per group 
+* p<0.05, ** p<0.01,*** p <0.001
+
+Gait speed p-value: 0.001
+
+Arm swing velocity p-value: 0.014
+
+Turn duration p value: 0.0001 
+
+Based on the findings, arm swing velocity had the most variability especially among the PD group. Additionally, the data is more skewed for the PD group with turn duration as indicated by the high median line. There was one outlier as shown by the circle in the gait speed plot. As indicated by the location of the mean compared to the median, many variables are relatively symmetrically distributed for both groups with the acceptation of arm swing velocity for the PD group.
+
+
+In order to categorize each participant as "High Fall Risk" or "Low Fall Risk", several thresholds were created. As previously mentioned, a gait speed at or below 1.0 m/s indicates increased fall risk. For arm velocity, if a participant was at or below the minimum arm swing velocity of the control group they were considered high fall risk. Lastly if a participant had a turn duration at the max turn duration of the control group or higher, then they were classified as high fall risk.
+
+```{r,fig.show="hold", fig.width=10,fig.height=5, echo=FALSE, message=FALSE}
+
+####Fall risk thresholds###
+
+max_turn_duration <- max(data2$Turn_dur_avg[data2$Group == "control"])
+min_arm_swing <- min(data2$Arm_vel_avg[data2$Group == "control"])
+gait_speed_risk <- 1.0
+
+###determine high/low fall risk for each group###
+
+data2 <- data2 %>%
+  mutate(fall_risk = ifelse(Gait_speed_avg <= gait_speed_risk 
+                    |Arm_vel_avg <= min_arm_swing
+                    |Turn_dur_avg >= max_turn_duration,
+                     "High Risk", "Low Risk"
+  ))
+
+#calculate percentage of high fall risk
+
+PD_num_high_risk <- sum(data2$fall_risk == "High Risk" & data2$Group =="PD")
+#PD_num_high_risk
+PD_high_risk <- (PD_num_high_risk/n_PD)*100
+#PD_high_risk
+# 83.3%, 10 PwP 
+
+control_num_high_risk <- sum(data2$fall_risk == "High Risk" & data2$Group =="control")
+#control_num_high_risk
+control_high_risk <- (control_num_high_risk/n_control)*100
+#control_high_risk
+#15.4%, 2 control
+#data2 <- data2 %>%
+  
+#change the width of the bars default is 0.9 and colors 
+ggplot(data2, aes(x = Group, fill = fall_risk)) + 
+  geom_bar(position = "dodge", width = 0.5) + 
+  labs(title = "Fall Risk",
+      x = "Group" , 
+      y = "Number of Participants",  
+      fill = "Fall Risk" ) +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  scale_fill_manual(values = c("orange", "lightblue"))
+    
+    
+ #   Gait_speed_avg <= 1.0, "High Risk", "Low Risk"))
+#risk_table <- table(data2$Group,data2$fall_risk)
+
+```
+**Figure 2** displays fall risk level for each group
+
+# Discussion 
+
+As shown in the literature, wearable sensors are a powerful tool for quantifying gait and balance variables. This study utilized APDM Opal sensors to analyze these variables in PwP and control participants.The results showed that there is a significant difference in the proportion of PwP classified as high fall risk compared to control participants.Specifically, 83.3% of the PwP were classified as "High Risk" compared to only 15.4% of controls. Additionally, there were statistically significant differences in each outcome variable across groups with Turn Duration showing the highest amount of significant difference (p <0.001). A limitation of this research paper is the small sample size and lack of mixed effects model. Since the measures were repeated for each participant, this analysis technique would have  accounted for the repeated measures and make the statistical analysis more powerful. The outcome variables analyzed in this study are not the only ones that can indicate increased fall risk, which creates an additional limitation to this study. Adding more variables such as steps in turn, and turn angle could provide a more comprehensive understanding of fall risk. Future research could benefit from applying this technique to evaluate performance before and after interventions, helping to inform the development and improvement of targeted strategies aimed at improving performance and reducing fall risk especially for PwP. 
+
+
+
